@@ -1,0 +1,29 @@
+{
+  "name": "ngChat",
+  "version": "0.0.0",
+  "homepage": "https://github.com/nchudleigh/ngChat",
+  "authors": [
+    "Neil Chudleigh <nchudleigh@gmail.com>"
+  ],
+  "description": "a pre renderer for chat applications built with angular.  @mentions, hyperlinks, inline videos, inline images, and emoticons",
+  "main": "src/ngChat.js",
+  "keywords": [
+    "@mentions",
+    "angular",
+    "hyperlink",
+    "inline",
+    "chat",
+    "video",
+    "images",
+    "emoticons"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
