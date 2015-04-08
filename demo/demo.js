@@ -10,7 +10,10 @@
     })
 
     .controller('demoController',['$scope',function($scope){
-        $scope.test = ' http://media.giphy.com/media/1026x5Ybk81eRW/giphy.gif'
+        $scope.test = ''
+        $scope.mentionClick=function(){
+            console.log('mentionClick');
+        }
     }])
 
 ;}(window, document, angular));

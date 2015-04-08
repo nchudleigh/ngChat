@@ -5,9 +5,10 @@
     <body ng-app="demo">
 
         <div ng-controller="demoController">
-            <ng-chat input="test"></ng-chat>
+            <ng-chat input="test" mention-function="mentionClick"></ng-chat>
             <input ng-model="test" type="text">
         </div>
+        <link rel="stylesheet" type="text/css" href="src/ngChat.css"></style>
         <script src="bower_components/angular/angular.min.js"type="text/javascript"charset="utf-8"></script>
         <script src="src/ngChat.js"type="text/javascript"charset="utf-8"></script>
         <script src="demo/demo.js"type="text/javascript"charset="utf-8"></script>
