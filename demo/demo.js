@@ -11,8 +11,8 @@
 
     .controller('demoController',['$scope',function($scope){
         $scope.test = ''
-        $scope.mentionClick=function(){
-            console.log('mentionClick');
+        $scope.findUser=function(){
+            console.log('findUser');
         }
     }])
 

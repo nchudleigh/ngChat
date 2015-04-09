@@ -5,9 +5,15 @@
     <body ng-app="demo">
 
         <div ng-controller="demoController">
-            <ng-chat input="test" mention-function="mentionClick"></ng-chat>
+            <ng-chat input="test" mention-function="findUser"></ng-chat>
             <input ng-model="test" type="text">
         </div>
+        <script>
+            var ngChatMentionHandler = function(){
+                console.log('clickyclick');
+            }
+        </script>
+
         <link rel="stylesheet" type="text/css" href="src/ngChat.css"></style>
         <script src="bower_components/angular/angular.min.js"type="text/javascript"charset="utf-8"></script>
         <script src="src/ngChat.js"type="text/javascript"charset="utf-8"></script>

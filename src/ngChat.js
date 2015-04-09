@@ -1,6 +1,7 @@
 (function(window, document, angular) {
     'use strict';
 
+
     angular.module('nchudleigh.ngchat',[])
 
     // .config(function ($httpProvider) {
@@ -13,8 +14,8 @@
             regex : {
                 mention : /\B[@]([0-z]+)/gmi,
                 image : /\.(gif|png|jpe?g)$/i,
-                url : /((https?:\/\/)?[a-z,0-9,\-]*\.?[a-z,0-9,\-]+\.[a-z,0-9,\-]+(\/[^\s]*)?)/g,
-                youtube : /(?:https?:\/\/|www\.|m\.|^)youtu(?:be\.com\/watch\?(?:.*?&(?:amp;)?)?v=|\.be\/)([\w‌​\-]+)(?:&(?:amp;)?[\w\?=]*)?/i
+                url : /((https?:\/\/)?[a-z,0-9,\-]*\.?[a-z,0-9,\-]+\.[a-z,0-9,\-]+(\/[^\s]*)?)/gmi,
+                youtube : /(?:https?:\/\/|www\.|m\.|^)youtu(?:be\.com\/watch\?(?:.*?&(?:amp;)?)?v=|\.be\/)([\w‌​\-]+)(?:&(?:amp;)?[\w\?=]*)?/gmi
             }
         };
         // public data and functions
@@ -74,7 +75,7 @@
             for( var i=0; i<matches.length; i++){
                 if(matches[i]==null) break;
                 if (inputLen < input.length) matches[i].idx += (input.length - inputLen);
-                input = input.splice(matches[i].idx, matches[i].src.length, "<a id='ng-chat-mention' class='mention' ng-click='mentionClick()'>"+matches[i].src+"</a>");
+                input = input.splice(matches[i].idx, matches[i].src.length, "<mention id='ng-chat-mention' class='mention' ng-click='mentionClick()'>"+matches[i].src+"</mention>");
             }
             return input;
         };
@@ -130,9 +131,9 @@
             restrict: 'EA',
             templateUrl: 'src/ngChat.html',
             scope:{
-                mentionClick:'=mentionFunction',
                 input:'=',
-                settings:'='
+                settings:'=',
+                mentionFunction:'='
             },
             link: function(scope, elem, attrs){
 
@@ -151,10 +152,26 @@
                     scope.content = ngChatService.makeSafe(scope.content);
                 };
 
+                scope.mentionClick = function(){
+                    scope.mentionFunction();
+                }
+
                 scope.$watch('input', scope.processInput);
             }
 
         }
     }])
+
+    .directive('dir', function($compile, $parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attr) {
+                scope.$watch(attr.content, function() {
+                    element.html($parse(element)(scope));
+                    $compile(element.contents())(scope);
+                }, false);
+            }
+        }
+    })
 
 ;}(window, document, angular));
